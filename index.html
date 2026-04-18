@@ -135,11 +135,11 @@
         }
 
         .feature-card {
-            background: rgba(255,255,255,0.95);
+            background: rgba(226, 205, 19, 0.95);
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(206, 150, 46, 0.2);
             transition: transform 0.3s;
         }
 
@@ -175,7 +175,7 @@
         /* Contact */
         .contact {
             background: rgba(223, 196, 110, 0.95);
-            color: #333;
+            color: #000000;
         }
 
         .contact-content {
@@ -218,8 +218,7 @@
 
         /* Footer */
         footer {
-            background: rgba(0,0,0,0.9);
-            color: rgb(206, 163, 46);
+            color: rgb(0, 0, 0);
             text-align: center;
             padding: 2rem 0;
         }
@@ -320,7 +319,7 @@
             </div>
             <div class="table-card animate">
                 <h3>COMBO 5 Tiếng</h3>
-                <p>90k</p>
+                <p>100k</p>
             </div>
             <div class="table-card animate">
                 <h3>Bàn Free</h3>
@@ -331,210 +330,14 @@
 
     <!-- Contact -->
     <section id="contact" class="contact container">
-        <h2 class="section-title animate">📞 LIÊN HỆ</h2>
+        <h2 class="section-title animate">📞 LIÊN HỆ ĐẶT BÀN 📞 </h2>
         <div class="contact-content">
             <div class="contact-info animate">
                 <h3>Bi-A Bi Ủng</h3>
                 <p><strong>📍 Địa chỉ:</strong> TDP Tăng Quang, Phường Việt Yên, Tỉnh Bắc Ninh</p>
                 <p><strong>☎️ Hotline:</strong> 0968 428 000</p>
                 <p><strong>⏰ Giờ mở cửa:</strong> 08:00 - 23:00</p>
-            </div>
-            <form class="contact-form animate">
-                <div class="form-group">
-                    <input type="text" placeholder="Họ tên" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Số điện thoại" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Số bàn cần đặt">
-                </div>
-                <div class="form-group">
-                    <textarea rows="4" placeholder="Ghi chú..."></textarea>
-                </div>
-                <button type="submit" class="cta-button" style="width: 100%;">ĐẶT BÀN NGAY</button>
-            </form>
-        </div>
-  
-    <!-- Nút Admin (chỉ chủ quán thấy) -->
-    <div class="admin-link" title="Quản lý đặt bàn" onclick="openAdminLogin()">
-        👨‍💼
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div id="adminOverlay" class="admin-overlay" onclick="closeAdminLogin()">
-        <div class="admin-modal" onclick="event.stopPropagation()">
-            <h3>🔐 ĐĂNG NHẬP ADMIN</h3>
-            <input type="password" id="adminPassword" placeholder="Mật khẩu admin">
-            <br>
-            <button class="admin-btn" onclick="loginAdmin()">Đăng nhập</button>
-            <button class="admin-btn" style="background: #666;" onclick="closeAdminLogin()">Đóng</button>
-        </div>
-    </div>
-
-    <!-- Dashboard Admin -->
-    <div id="adminDashboard" class="dashboard">
-        <div class="dashboard-header">
-            <h2>📋 QUẢN LÝ ĐẶT BÀN</h2>
-            <button class="close-dashboard" onclick="closeDashboard()">×</button>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalBookings">0</div>
-                <div>Tổng đơn</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="newBookings">0</div>
-                <div>Đơn mới</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="confirmedBookings">0</div>
-                <div>Đã xác nhận</div>
-            </div>
-        </div>
-
-        <h3>📋 Danh sách đặt bàn</h3>
-        <ul id="bookingList" class="booking-list"></ul>
-    </div>
-
-    <script>
-        // Mật khẩu admin (thay đổi theo ý bạn)
-        const ADMIN_PASSWORD = 'bia123biung';
-        
-        // Lưu trữ bookings (localStorage thay vì database thật)
-        let bookings = JSON.parse(localStorage.getItem('biABiUngBookings')) || [];
-        let isAdminLoggedIn = false;
-
-        // Form đặt bàn
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            const booking = {
-                id: Date.now(),
-                name: document.getElementById('customerName').value,
-                phone: document.getElementById('phone').value,
-                tableCount: document.getElementById('tableCount').value || 1,
-                time: document.getElementById('bookingTime').value,
-                notes: document.getElementById('notes').value,
-                status: 'new', // new, confirmed, cancelled
-                createdAt: new Date().toLocaleString('vi-VN')
-            };
-
-            bookings.unshift(booking); // Thêm vào đầu danh sách
-            localStorage.setItem('biABiUngBookings', JSON.stringify(bookings));
-            
-            // Thông báo thành công
-            alert(`✅ ĐẶT BÀN THÀNH CÔNG!\n\n👤 ${booking.name}\n📞 ${booking.phone}\n🕒 ${new Date(booking.time).toLocaleString('vi-VN')}\n\nChúng tôi sẽ gọi xác nhận trong 5 phút!`);
-            
-            this.reset();
-            updateDashboard(); // Cập nhật dashboard nếu admin đang mở
-        });
-
-        // Admin functions
-        function openAdminLogin() {
-            document.getElementById('adminOverlay').style.display = 'flex';
-        }
-
-        function closeAdminLogin() {
-            document.getElementById('adminOverlay').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function loginAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                isAdminLoggedIn = true;
-                closeAdminLogin();
-                document.getElementById('adminDashboard').classList.add('active');
-                updateDashboard();
-            } else {
-                alert('❌ Mật khẩu sai!');
-            }
-        }
-
-        function closeDashboard() {
-            document.getElementById('adminDashboard').classList.remove('active');
-        }
-
-        function updateDashboard() {
-            const bookingList = document.getElementById('bookingList');
-            const total = bookings.length;
-            const newBookings = bookings.filter(b => b.status === 'new').length;
-            const confirmed = bookings.filter(b => b.status === 'confirmed').length;
-
-            document.getElementById('totalBookings').textContent = total;
-            document.getElementById('newBookings').textContent = newBookings;
-            document.getElementById('confirmedBookings').textContent = confirmed;
-
-            bookingList.innerHTML = '';
-            bookings.forEach(booking => {
-                const li = document.createElement('li');
-                li.className = `booking-item ${booking.status === 'new' ? 'new' : ''}`;
-                li.innerHTML = `
-                    <div class="booking-name">${booking.name}</div>
-                    <div class="booking-details">
-                        📞 ${booking.phone} | Bàn: ${booking.tableCount}<br>
-                        📝 ${booking.notes || 'Không ghi chú'}
-                    </div>
-                    <div class="booking-time">🕒 ${new Date(booking.time).toLocaleString('vi-VN')}</div>
-                    <div class="booking-time">${booking.createdAt} | ${booking.status.toUpperCase()}</div>
-                    <div class="action-buttons">
-                        ${booking.status !== 'confirmed' ? 
-                            `<button class="btn-success" onclick="confirmBooking(${booking.id})">✅ Xác nhận</button>` : 
-                            `<span style="color:#00d4aa">✓ Đã xác nhận</span>`
-                        }
-                        <button class="btn-danger" onclick="cancelBooking(${booking.id})">❌ Hủy</button>
-                        <button class="btn-success" style="background:#4ecdc4;" onclick="callCustomer('${booking.phone}')">📞 Gọi</button>
-                    </div>
-                `;
-                bookingList.appendChild(li);
-            });
-        }
-
-        function confirmBooking(id) {
-            const booking = bookings.find(b => b.id === id);
-            if (booking) {
-                booking.status = 'confirmed';
-                localStorage.setItem('biABiUngBookings', JSON.stringify(bookings));
-                updateDashboard();
-            }
-        }
-
-        function cancelBooking(id) {
-            if (confirm('Xóa đơn đặt bàn này?')) {
-                bookings = bookings.filter(b => b.id !== id);
-                localStorage.setItem('biABiUngBookings', JSON.stringify(bookings));
-                updateDashboard();
-            }
-        }
-
-        function callCustomer(phone) {
-            window.open(`tel:${phone}`);
-        }
-
-        // Đặt thời gian mặc định cho form
-        document.getElementById('bookingTime').valueAsDate = new Date(new Date().getTime() + 60*60*1000);
-
-        // Auto update dashboard mỗi 10s khi admin đang mở
-        setInterval(() => {
-            if (document.getElementById('adminDashboard').classList.contains('active')) {
-                updateDashboard();
-            }
-        }, 10000);
-
-        // Smooth scroll (giữ nguyên)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -553,26 +356,6 @@
             });
         });
 
-        // Animate on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = '0.2s';
-                    entry.target.classList.add('animate');
-                }
-            });
-        });
-
-        document.querySelectorAll('.animate').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('🎉 Cảm ơn bạn đã đặt bàn! Chúng tôi sẽ liên hệ ngay!');
-            this.reset();
-        });
     </script>
 </body>
 </html>
