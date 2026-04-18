@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bi-A Bi Ủng - Quán Bi-A Số 1</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('../IMAGE/BACK3.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #045e61;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,53,0.6);
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: dịch vụ;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Features */
+        .features {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(226, 205, 19, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(206, 150, 46, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Bàn bi-a */
+        .tables {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .table-card {
+            background: linear-gradient(145deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+        }
+
+        /* Contact */
+        .contact {
+            background: rgba(223, 196, 110, 0.95);
+            color: #000000;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #df7b56;
+        }
+
+        /* Footer */
+        footer {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">🎱 Bi-A Bi Ủng</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#features">Dịch vụ</a></li>
+                <li><a href="#tables">Bàn bi-a</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content animate">
+            <h1>🎱 BI-A BI ỦNG 🎱</h1>
+            <p>Quán bi-a số 1 khu vực - Bàn chuẩn thi đấu, không gian chill</p>
+            <a href="#contact" class="cta-button">Đặt bàn ngay →</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features container">
+        <h2 class="section-title animate">✨ DỊCH VỤ NỔI BẬT</h2>
+        <div class="features-grid">
+            <div class="feature-card animate">
+                <div class="feature-icon">🎱</div>
+                <h3>Bàn Bi-A Chuẩn</h3>
+                <p>6 bàn </p>
+            </div>
+            <div class="feature-card animate">
+                <div class="feature-icon">🥤</div>
+                <h3>Đồ uống Đa dạng</h3>
+                <p>Nước cam ép, Trà chanh, Matcha late giá sinh viên</p>
+            </div>
+            <div class="feature-card animate">
+                <div class="feature-icon">📱</div>
+                <h3>WiFi Siêu Tốc</h3>
+                <p>WiFi free 100Mbps, sạc dự phòng miễn phí mọi bàn</p>
+            </div>
+            <div class="feature-card animate">
+                <div class="feature-icon">🎵</div>
+                <h3>Nhạc Chill</h3>
+                <p>Âm lượng vừa phải, không ồn ào</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tables -->
+    <section id="tables" class="tables container">
+        <h2 class="section-title animate">🛋️ COMBO ƯU ĐÃI </h2>
+        <div class="tables-grid">
+            <div class="table-card animate">
+                <h3>COMBO 3 Tiếng</h3>
+                <p>60K cực rẻ</p>
+            </div>
+            <div class="table-card animate">
+                <h3>COMBO 5 Tiếng</h3>
+                <p>100k</p>
+            </div>
+            <div class="table-card animate">
+                <h3>Bàn Free</h3>
+                <p>Ưu đãi dành cho hội viên tập luyện</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact container">
+        <h2 class="section-title animate">📞 LIÊN HỆ ĐẶT BÀN 
+0968 428 000 📞 </h2>
+        <div class="contact-content">
+            <div class="contact-info animate">
+                <h3>Bi-A Bi Ủng</h3>
+                <p><strong>📍 Địa chỉ:</strong> TDP Tăng Quang, Phường Việt Yên, Tỉnh Bắc Ninh</p>
+                <p><strong>☎️ Hotline/Zalo:</strong> 0968 428 000</p>
+                <p><strong>⏰ Giờ mở cửa:</strong> 08:00 - 23:00</p>
+            
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy;Bi-A Bi Ủng. Hân hạnh được phục vụ! 🎱</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
